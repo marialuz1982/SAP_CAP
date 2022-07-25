@@ -1,0 +1,172 @@
+{
+  "namespace": "BibliotecaCAP",
+  "definitions": {
+    "BibliotecaCAP.Socio": {
+      "kind": "entity",
+      "elements": {
+        "Dni": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "Nombre": {
+          "type": "cds.String"
+        },
+        "Direccion": {
+          "type": "cds.String"
+        },
+        "Telefono": {
+          "type": "cds.String"
+        },
+        "To_Libros": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "BibliotecaCAP.Libro",
+          "on": [
+            {
+              "ref": [
+                "To_Libros",
+                "Dni"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "Dni"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "BibliotecaCAP.Libro": {
+      "kind": "entity",
+      "elements": {
+        "Dni": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "Isbn": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "Titulo": {
+          "type": "cds.String"
+        },
+        "FechaPrest": {
+          "type": "cds.String"
+        },
+        "To_Socio": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "BibliotecaCAP.Socio",
+          "keys": [
+            {
+              "ref": [
+                "Dni"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "ZOS_ACADEMIA_BIBLIOTECA_CAP_SRV": {
+      "@source": "srv/service.cds",
+      "kind": "service"
+    },
+    "ZOS_ACADEMIA_BIBLIOTECA_CAP_SRV.SocioSet": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "BibliotecaCAP.Socio"
+          ]
+        }
+      },
+      "elements": {
+        "Dni": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "Nombre": {
+          "type": "cds.String"
+        },
+        "Direccion": {
+          "type": "cds.String"
+        },
+        "Telefono": {
+          "type": "cds.String"
+        },
+        "To_Libros": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "ZOS_ACADEMIA_BIBLIOTECA_CAP_SRV.LibroSet",
+          "on": [
+            {
+              "ref": [
+                "To_Libros",
+                "Dni"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "Dni"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "ZOS_ACADEMIA_BIBLIOTECA_CAP_SRV.LibroSet": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "BibliotecaCAP.Libro"
+          ]
+        }
+      },
+      "elements": {
+        "Dni": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "Isbn": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "Titulo": {
+          "type": "cds.String"
+        },
+        "FechaPrest": {
+          "type": "cds.String"
+        },
+        "To_Socio": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "ZOS_ACADEMIA_BIBLIOTECA_CAP_SRV.SocioSet",
+          "keys": [
+            {
+              "ref": [
+                "Dni"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v2.15.4",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}

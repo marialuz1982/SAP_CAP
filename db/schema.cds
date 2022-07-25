@@ -6,7 +6,7 @@ entity Socio {
         Direccion : String;
         Telefono  : String;
         //Asociacion (padre a hijo)
-        To_Libros : Association to many Libro on To_Libros.To_Socio = Dni;
+        To_Libros : Association to many Libro on To_Libros.Dni = Dni;
 }
 
 entity Libro {

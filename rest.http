@@ -1,0 +1,33 @@
+GET http://localhost:4040/zos-academia-biblioteca-cap-srv/SocioSet
+
+
+###
+GET http://localhost:4040/zos-academia-biblioteca-cap-srv/LibroSet
+Content-Type: application/json
+
+###
+GET http://localhost:4040/zos-academia-biblioteca-cap-srv/LibroSet(Dni="29583211")
+Content-Type: application/json
+
+
+###
+POST  http://localhost:4040/zos-academia-biblioteca-cap-srv/SocioSet
+Content-Type: application/json
+
+{
+        "Dni":   "";
+        "Nombre"    : "Maria";
+        "Direccion" : "Rivadavia";
+        "Telefono"  : "9897129";
+}
+
+###
+POST  http://localhost:4040/zos-academia-biblioteca-cap-srv/LibroSet
+Content-Type: application/json
+{
+        "Dni":"29583211",
+         "Isbn":"13578",
+         "Titulo":"Algebra I",
+         "FechaPrest":"28/07/2022"
+         
+}
